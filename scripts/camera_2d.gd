@@ -8,17 +8,17 @@ func is_table_in_view(table: Table, orientation: String = "start") -> bool:
 	var table_point = table.get_start()
 	if orientation == "end":
 		table_point = table.get_end()
-	var end_position = level_generator.map_to_local(table_point)
+	var point_position = level_generator.map_to_local(table_point)
 	var right_bound = get_screen_center_position() + (get_viewport_rect().size / 2)
-	return right_bound.x > end_position.x
+	return right_bound.x > point_position.x
 
 func is_table_out_view(table: Table, orientation: String = "start") -> bool:
 	var table_point = table.get_start()
 	if orientation == "end":
 		table_point = table.get_end()
-	var end_position = level_generator.map_to_local(table_point)
+	var point_position = level_generator.map_to_local(table_point)
 	var left_bound = get_screen_center_position() - (get_viewport_rect().size / 2)
-	return left_bound.x > end_position.x
+	return left_bound.x > point_position.x
 
 func move_camera(table: Table, delta: float) -> void:
 	var start_position = level_generator.map_to_local(table.get_start())

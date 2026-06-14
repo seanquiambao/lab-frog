@@ -19,21 +19,18 @@ func _process(delta: float) -> void:
 		return
 	camera_2d.move_camera(tables.back(), delta)
 	if(camera_2d.is_table_in_view(tables.back(), "end")):
-		print(tables.size())
 		tables.back().change_state()
 		_generate()
-	elif(camera_2d.is_table_out_view(tables.back())):
-		tables.back().change_state()
+	if(camera_2d.is_table_out_view(tables.front(), "end")):
+		tables.front().change_state()
 		_destroy()
 
 func _destroy() -> void:
-	var table = tables.front()
+	var table = tables.pop_front()
 	if(table.get_state() != Globals.TableState.COMPLETED):
 		return
 	for tile in table.get_tiles():
 		erase_cell(tile.get_position())
-	
-	tables.pop_front()
 	table.queue_free()
 
 func _generate() -> void:
@@ -42,7 +39,7 @@ func _generate() -> void:
 	tables.back().change_state()
 	var table = Table.new(tables.back())
 	tables.push_back(table)
-	_draw_table(tables.back())
+	_draw_table(table)
 
 func _draw_table(table: Table) -> void:
 	for tile in table.get_tiles():
