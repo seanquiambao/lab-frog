@@ -12,7 +12,7 @@ func get_tables() -> Array[Table]:
 func _ready() -> void:
 	var table = Table.new()
 	tables.push_back(table)
-	_draw_table(tables.back())
+	_draw_tiles(tables.back())
 
 func _process(delta: float) -> void:
 	if tables.size() <= 0:
@@ -39,8 +39,8 @@ func _generate() -> void:
 	tables.back().change_state()
 	var table = Table.new(tables.back())
 	tables.push_back(table)
-	_draw_table(table)
+	_draw_tiles(table)
 
-func _draw_table(table: Table) -> void:
+func _draw_tiles(table: Table) -> void:
 	for tile in table.get_tiles():
 		set_cell(tile.get_position(), theme, tile.get_atlas_coordinate())
