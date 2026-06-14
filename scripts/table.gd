@@ -20,11 +20,6 @@ func get_start() -> Vector2i:
 func get_end() -> Vector2i:
 	return Vector2i(start.x + length, start.y)
 
-func _delete_tiles() -> void:
-	print("DELETING TILES")
-	for tile in tiles:
-		tile.queue_free()
-
 func _populate_tiles() -> void:
 	# Populate top table
 	for i in range(start.x, get_end().x + 1):
@@ -46,9 +41,13 @@ func _populate_tiles() -> void:
 		tiles.push_back(start_tile)
 		tiles.push_back(end_tile)
 
+func _clear_tiles() -> void:
+	for tile in tiles:
+		tile.queue_free()
+
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_PREDELETE:
-		_delete_tiles()
+		_clear_tiles()
 
 func _init(recent_table: Table = null) -> void:
 	# Spawn

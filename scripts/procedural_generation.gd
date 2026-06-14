@@ -23,15 +23,17 @@ func _process(delta: float) -> void:
 	if(camera_2d.is_table_out_view(tables.front(), "end")):
 		_destroy()
 
+func _generate() -> void:
+	var table = Table.new(tables.back())
+	tables.push_back(table)
+	_draw_tiles(table)
+
 func _destroy() -> void:
 	var table = tables.pop_front()
 	for tile in table.get_tiles():
 		erase_cell(tile.get_position())
 	table.queue_free()
-func _generate() -> void:
-	var table = Table.new(tables.back())
-	tables.push_back(table)
-	_draw_tiles(table)
+
 
 func _draw_tiles(table: Table) -> void:
 	for tile in table.get_tiles():
