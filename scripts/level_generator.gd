@@ -27,8 +27,8 @@ func _destroy() -> void:
 	var table = tables.pop_front()
 	for tile in table.get_tiles():
 		erase_cell(tile.get_position())
+	table.delete_tiles()
 	table.queue_free()
-
 func _generate() -> void:
 	var table = Table.new(tables.back())
 	tables.push_back(table)

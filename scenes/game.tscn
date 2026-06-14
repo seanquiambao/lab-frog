@@ -90,7 +90,7 @@ tile_set = SubResource("TileSet_lbhrr")
 script = ExtResource("4_lbhrr")
 
 [node name="Camera2D" type="Camera2D" parent="LevelGenerator" unique_id=2022116034]
-zoom = Vector2(2, 2)
+zoom = Vector2(1.5, 1.5)
 script = ExtResource("4_iywne")
 
 [node name="Killzone" parent="LevelGenerator/Camera2D" unique_id=1028965268 instance=ExtResource("5_iywne")]

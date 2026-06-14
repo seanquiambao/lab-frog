@@ -1,7 +1,8 @@
 extends Camera2D
 @onready var level_generator: TileMapLayer = %LevelGenerator
 
-const OFFSET = 100;
+const OFFSET = 0;
+const WEIGHT = 0.3;
 var camera_speed = 100
 
 func is_table_in_view(table: Table, orientation: String = "start") -> bool:
@@ -25,4 +26,4 @@ func move_camera(table: Table, delta: float) -> void:
 	position.x += (delta * camera_speed)
 	if not is_table_in_view(table, "start"):
 		return
-	position.y = lerp(position.y, start_position.y - OFFSET, 0.4 * delta)
+	position.y = lerp(position.y, start_position.y - OFFSET, WEIGHT * delta)
