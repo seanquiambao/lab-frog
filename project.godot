@@ -15,6 +15,10 @@ run/main_scene="uid://o7i2u4ewel0b"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Globals="*uid://ch2bgbeisgpcd"
+
 [input]
 
 jump={
