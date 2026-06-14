@@ -14,10 +14,11 @@ func _ready() -> void:
 	tables.push_back(table)
 	_draw_table(tables.back())
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if tables.size() <= 0:
 		return
-	if(camera_2d.is_table_in_view(tables.back())):
+	camera_2d.move_camera(tables.back(), delta)
+	if(camera_2d.is_table_in_view(tables.back(), "end")):
 		print(tables.size())
 		tables.back().change_state()
 		_generate()
