@@ -73,6 +73,7 @@ func change_state() -> void:
 			_set_state(Globals.TableState.COMPLETED)
 
 func _populate_tiles() -> void:
+	# Populate top table
 	for i in range(start.x, get_end().x + 1):
 		var texture: String = "METAL_MIDDLE_TOP"
 		if(i == start.x):
@@ -82,6 +83,15 @@ func _populate_tiles() -> void:
 		var position: Vector2i = Vector2i(i, start.y)
 		var tile: Tile = Tile.new(position, texture)
 		tiles.push_back(tile)
+	
+	# Populate legs
+	for i in range(start.y + 1, start.y + 10):
+		var start_position: Vector2i = Vector2i(start.x, i)
+		var end_position: Vector2i = Vector2i(get_end().x, i)
+		var start_tile: Tile = Tile.new(start_position, "METAL_START_LEG")
+		var end_tile: Tile = Tile.new(end_position, "METAL_END_LEG")
+		tiles.push_back(start_tile)
+		tiles.push_back(end_tile)
 
 func _exit_tree() -> void:
 	for tile in tiles:
