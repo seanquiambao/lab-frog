@@ -19,7 +19,6 @@ class Tile:
 		texture_atlas_coordinate = ATLAS_COORDINATES[texture]
 
 var start: Vector2i = Vector2i(-2, 2)
-var state: Globals.TableState = Globals.TableState.QUEUED
 var length: int = MIN_LENGTH
 var tiles: Array[Tile] = []
 
@@ -47,9 +46,6 @@ const ATLAS_COORDINATES: Dictionary = {
 	"WOOD_END_LEG": Vector2i(11,1)
 }
 
-func get_state() -> Globals.TableState:
-	return state
-
 func get_tiles() -> Array[Tile]:
 	return tiles
 
@@ -58,19 +54,6 @@ func get_start() -> Vector2i:
 
 func get_end() -> Vector2i:
 	return Vector2i(start.x + length, start.y)
-
-func _set_state(new_state: Globals.TableState) -> void:
-	state = new_state
-
-func change_state() -> void:
-	
-	match get_state():
-		Globals.TableState.QUEUED:
-			_set_state(Globals.TableState.START)
-		Globals.TableState.START:
-			_set_state(Globals.TableState.INPROGRESS)
-		_:
-			_set_state(Globals.TableState.COMPLETED)
 
 func _populate_tiles() -> void:
 	# Populate top table
