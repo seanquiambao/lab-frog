@@ -20,7 +20,8 @@ func get_start() -> Vector2i:
 func get_end() -> Vector2i:
 	return Vector2i(start.x + length, start.y)
 
-func delete_tiles() -> void:
+func _delete_tiles() -> void:
+	print("DELETING TILES")
 	for tile in tiles:
 		tile.queue_free()
 
@@ -44,6 +45,10 @@ func _populate_tiles() -> void:
 		var end_tile: Tile = Tile.new(end_position, "METAL_END_LEG")
 		tiles.push_back(start_tile)
 		tiles.push_back(end_tile)
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PREDELETE:
+		_delete_tiles()
 
 func _init(recent_table: Table = null) -> void:
 	# Spawn
