@@ -26,7 +26,7 @@ var tiles: Array[Tile] = []
 const MIN_DISTANCE = 3
 const MAX_DISTANCE = 5
 const MIN_LENGTH = 10
-const MAX_LENGTH = 50
+const MAX_LENGTH = 15
 const ATLAS_COORDINATES: Dictionary = {
 	"METAL_START_TOP": Vector2i(0, 0),
 	"METAL_START_LEG": Vector2i(0, 1),
@@ -95,6 +95,7 @@ func _populate_tiles() -> void:
 
 func _exit_tree() -> void:
 	for tile in tiles:
+		print("yay")
 		tile.queue_free()
 
 func _init(recent_table: Table = null) -> void:

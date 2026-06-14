@@ -1,8 +1,13 @@
 [gd_scene format=3 uid="uid://j573mx5tni2f"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_csqde"]
+[ext_resource type="Script" uid="uid://cu0mxodgborjv" path="res://scripts/killzone.gd" id="1_xlapc"]
 
-[node name="Killzone" type="StaticBody2D" unique_id=296631182]
+[node name="Killzone" type="Area2D" unique_id=1028965268]
+script = ExtResource("1_xlapc")
 
-[node name="StaticBody2D" type="CollisionShape2D" parent="." unique_id=2055362783]
-shape = SubResource("WorldBoundaryShape2D_csqde")
+[node name="Timer" type="Timer" parent="." unique_id=802577662]
+wait_time = 0.6
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
