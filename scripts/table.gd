@@ -5,6 +5,7 @@ class_name Table
 var start: Vector2i = Vector2i(-2, 2)
 var length: int = MIN_LENGTH
 var tiles: Array[Tile] = []
+var texture: LabTileSet.TableTextures = LabTileSet.TableTextures.METAL
 
 const MIN_DISTANCE = 3
 const MAX_DISTANCE = 5
@@ -21,25 +22,29 @@ func get_end() -> Vector2i:
 	return Vector2i(start.x + length, start.y)
 
 func _populate_tiles() -> void:
+	var end = get_end();
 	# Populate top table
-	for i in range(start.x, get_end().x + 1):
-		var texture: LabTileSet.LabTileTexture = LabTileSet.LabTileTexture.METAL_MIDDLE_TOP
-		if(i == start.x):
-			texture = LabTileSet.LabTileTexture.METAL_START_TOP
-		elif(i == get_end().x):
-			texture = LabTileSet.LabTileTexture.METAL_END_TOP
-		var position: Vector2i = Vector2i(i, start.y)
-		var tile: Tile = Tile.new(position, texture)
-		tiles.push_back(tile)
-	
-	# Populate legs
-	for i in range(start.y + 1, start.y + 10):
-		var start_position: Vector2i = Vector2i(start.x, i)
-		var end_position: Vector2i = Vector2i(get_end().x, i)
-		var start_tile: Tile = Tile.new(start_position, LabTileSet.LabTileTexture.METAL_START_LEG)
-		var end_tile: Tile = Tile.new(end_position, LabTileSet.LabTileTexture.METAL_END_LEG)
-		tiles.push_back(start_tile)
-		tiles.push_back(end_tile)
+	for i in range(start.x, end.x + 1):
+		for j in range(start.y, start.y + 10):
+			var tile_texture: Vector2i
+			var tile_textures: Array
+			if i == start.x and j == start.y:
+				tile_textures = LabTileSet.get_tiles(texture, LabTileSet.Parts.START_TOP)
+			elif i == end.x and j == start.y:
+				tile_textures = LabTileSet.get_tiles(texture, LabTileSet.Parts.END_TOP)
+			elif j == start.y:
+				tile_textures = LabTileSet.get_tiles(texture, LabTileSet.Parts.MIDDLE_TOP)
+			elif i == start.x:
+				tile_textures = LabTileSet.get_tiles(texture, LabTileSet.Parts.START_LEG)
+			elif i == end.x:
+				tile_textures = LabTileSet.get_tiles(texture, LabTileSet.Parts.END_LEG)
+			elif texture == LabTileSet.TableTextures.WOOD:
+				tile_textures = LabTileSet.get_tiles(texture, LabTileSet.Parts.MIDDLE_LEG)
+			else:
+				continue
+			tile_texture = tile_textures[randi_range(0, tile_textures.size() - 1)]
+			var tile: Tile = Tile.new(Vector2i(i, j), tile_texture)
+			tiles.push_back(tile)
 
 func _clear_tiles() -> void:
 	for tile in tiles:
@@ -58,4 +63,5 @@ func _init(recent_table: Table = null) -> void:
 	start.x = recent_table.get_end().x + randi_range(MIN_DISTANCE, MAX_DISTANCE)
 	start.y = recent_table.get_end().y + ((randi() % 2 if -1 else 1) * randi_range(0, 3))
 	length = randi_range(MIN_LENGTH, MAX_LENGTH)
+	texture = LabTileSet.TableTextures.values()[randi() % LabTileSet.TableTextures.size()]
 	_populate_tiles()

@@ -34,7 +34,6 @@ func _destroy() -> void:
 		erase_cell(tile.get_position())
 	table.queue_free()
 
-
 func _draw_tiles(table: Table) -> void:
 	for tile in table.get_tiles():
 		set_cell(tile.get_position(), theme, tile.get_atlas_coordinate())
