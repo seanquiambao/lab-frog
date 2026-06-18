@@ -15,7 +15,7 @@ enum TableTextures {
 	WOOD,
 }
 
-static var tileset = {
+static var table_tileset = {
 	TableTextures.METAL: {
 		Parts.START_TOP: [Vector2i(0, 0)],
 		Parts.MIDDLE_TOP: [Vector2i(1, 0)],
@@ -40,5 +40,14 @@ static var tileset = {
 	},
 }
 
-static func get_tiles(texture: TableTextures, part: Parts) -> Array:
-	return tileset[texture][part]
+# Each index is by size
+static var table_obstacle_tileset = {
+	1: [Vector2i(0, 3), Vector2i(1,3), Vector2i(1,4), Vector2i(2,5)],
+	2: [Vector2i(2,3), Vector2i(2,4)],
+	3: [Vector2i(0,2), Vector2i(3, 2), Vector2i(0,6),Vector2i(0,11)]
+}
+static func get_table_obstacles(size: int) -> Array:
+	return table_obstacle_tileset[size]
+
+static func get_table_tiles(texture: TableTextures, part: Parts) -> Array:
+	return table_tileset[texture][part]

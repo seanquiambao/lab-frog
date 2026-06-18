@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://bcj7wijbw8do5"]
+
+[ext_resource type="Script" uid="uid://b4b4ita4ahojp" path="res://scripts/enemy/frog.gd" id="1_7fdwa"]
+[ext_resource type="Texture2D" uid="uid://b7q6y0qwtw1js" path="res://assets/sprites/enemy_frog.png" id="1_ibfrg"]
+[ext_resource type="PackedScene" uid="uid://j573mx5tni2f" path="res://scenes/killzone.tscn" id="2_7fdwa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t757d"]
+atlas = ExtResource("1_ibfrg")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbmco"]
+atlas = ExtResource("1_ibfrg")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5g025"]
+atlas = ExtResource("1_ibfrg")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xdfmn"]
+atlas = ExtResource("1_ibfrg")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hda15"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t757d")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pbmco")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5g025")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xdfmn")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k1x60"]
+radius = 7.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e5qq5"]
+size = Vector2(15, 2)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7fdwa"]
+
+[node name="EnemyFrog" type="CharacterBody2D" unique_id=1474151231]
+collision_mask = 2
+script = ExtResource("1_7fdwa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=722239701]
+sprite_frames = SubResource("SpriteFrames_hda15")
+animation = &"idle"
+
+[node name="Killzone" parent="." unique_id=1028965268 instance=ExtResource("2_7fdwa")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone" unique_id=2055730250]
+shape = SubResource("CircleShape2D_k1x60")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=250364812]
+position = Vector2(-0.5, 9)
+scale = Vector2(0.1200012, 1)
+shape = SubResource("RectangleShape2D_e5qq5")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1297405856]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1605013217]
+scale = Vector2(25.64, 25.64)
+shape = SubResource("CircleShape2D_7fdwa")
+debug_color = Color(1, 0.6, 0.69803923, 0.41960785)
+
+[node name="Timer" type="Timer" parent="." unique_id=887828868]
+wait_time = 3.0
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

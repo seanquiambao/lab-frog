@@ -1,22 +1,25 @@
 extends CharacterBody2D
+class_name Player
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 const FORCE_CONSTANT = 5;
-const MAXIMUM_FORCE = 500;
+const MAXIMUM_FORCE = 750;
 var _mouse_down = false;
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-	if(velocity.y == 0):
-		velocity.x = lerp(velocity.x, 0.0, 5.0 * delta)
+	move_and_slide()
 
+	if(velocity.y == 0):
+		velocity.x = 0
+	
 	_update_sprite()
 	_detect_input()
-	move_and_slide()
 	queue_redraw()
+	
 
 func _draw() -> void:
 	if not _mouse_down or not is_on_floor():
