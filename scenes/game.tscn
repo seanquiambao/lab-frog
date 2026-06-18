@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://dm52ey5hu5prt" path="res://scripts/camera_2d.gd" id="4_iywne"]
 [ext_resource type="Script" uid="uid://c4n1v43vmq22w" path="res://scripts/procedural_generation.gd" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://j573mx5tni2f" path="res://scenes/killzone.tscn" id="5_iywne"]
-[ext_resource type="PackedScene" uid="uid://bcj7wijbw8do5" path="res://scenes/enemy_frog.tscn" id="6_p57ef"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
 texture = ExtResource("3_lnu2h")
@@ -119,6 +118,3 @@ shape = SubResource("WorldBoundaryShape2D_p57ef")
 position = Vector2(-433, -2)
 rotation = 1.5707964
 shape = SubResource("WorldBoundaryShape2D_p57ef")
-
-[node name="EnemyFrog" parent="." unique_id=1474151231 instance=ExtResource("6_p57ef")]
-position = Vector2(81, -56)
