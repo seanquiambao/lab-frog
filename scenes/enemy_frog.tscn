@@ -59,7 +59,6 @@ size = Vector2(15, 2)
 [sub_resource type="CircleShape2D" id="CircleShape2D_7fdwa"]
 
 [node name="EnemyFrog" type="CharacterBody2D" unique_id=1474151231]
-collision_mask = 2
 script = ExtResource("1_7fdwa")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=722239701]
@@ -67,6 +66,7 @@ sprite_frames = SubResource("SpriteFrames_hda15")
 animation = &"idle"
 
 [node name="Killzone" parent="." unique_id=1028965268 instance=ExtResource("2_7fdwa")]
+is_enemy_kill_zone = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone" unique_id=2055730250]
 shape = SubResource("CircleShape2D_k1x60")
@@ -79,7 +79,7 @@ shape = SubResource("RectangleShape2D_e5qq5")
 [node name="Area2D" type="Area2D" parent="." unique_id=1297405856]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1605013217]
-scale = Vector2(25.64, 25.64)
+scale = Vector2(18.4, 18.4)
 shape = SubResource("CircleShape2D_7fdwa")
 debug_color = Color(1, 0.6, 0.69803923, 0.41960785)
 

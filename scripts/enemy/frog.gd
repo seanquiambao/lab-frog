@@ -1,9 +1,11 @@
 extends CharacterBody2D
 
+class_name EnemyFrog
+
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var timer: Timer = $Timer
 
-const FORCE_CONSTANT = 200;
+const FORCE_CONSTANT = 450;
 var target: CharacterBody2D
 var is_aggressive: bool = false
 
@@ -31,8 +33,8 @@ func _update_sprite() -> void:
 func _launch() -> void:
 	if not is_aggressive:
 		return
-	var difference_position = target.position - position 
-	var direction = difference_position.normalized().clamp(Vector2(-0.5, 0.5), Vector2(0.5, 0.5))
+	var difference_position = target.global_position - position 
+	var direction = difference_position.normalized().clamp(Vector2(-1, -0.5), Vector2(1, -1))
 	velocity = direction * FORCE_CONSTANT
 	
 func _on_area_2d_body_entered(body: Node2D) -> void:
