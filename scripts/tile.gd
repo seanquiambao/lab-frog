@@ -5,6 +5,7 @@ class_name Tile
 enum TileType {
 	PLATFORM,
 	ENEMY,
+	COIN
 }
 var position: Vector2i
 var tile_type: TileType

@@ -7,11 +7,13 @@ var length: int = MIN_LENGTH
 var tiles: Array[Tile] = []
 var texture: LabTileSet.TableTextures = LabTileSet.TableTextures.METAL
 var _has_enemy: bool = false
+var _coins: int = 0;
 
 const MIN_DISTANCE = 3
 const MAX_DISTANCE = 5
 const MIN_LENGTH = 10
 const MAX_LENGTH = 15
+const MAX_COINS = 2
 
 func get_start() -> Vector2i:
 	return start
@@ -63,6 +65,10 @@ func _populate_tiles(spawn: bool = false) -> void:
 			tile = Tile.new(Vector2i(i, start.y - 1), Tile.TileType.ENEMY)
 			_has_enemy = true
 			i += 1
+		elif chance == 3 and _coins < MAX_COINS:
+			tile = Tile.new(Vector2i(i, start.y - randi_range(2, 4)), Tile.TileType.COIN)
+			i += 1
+			_coins += 1
 		else:
 			var remaining_size = (end.x + 1) - i
 			var max_size = min(remaining_size, 3)

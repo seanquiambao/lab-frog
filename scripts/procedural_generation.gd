@@ -1,7 +1,7 @@
 extends TileMapLayer
 @onready var camera_2d: Camera2D = $Camera2D
 
-
+var _coin_resource = preload("res://scenes/coin.tscn")
 var _enemy_resource = preload("res://scenes/enemy_frog.tscn")
 var tables: Array[Table] = []
 var theme: ThemeTileSet = ThemeTileSet.Lab
@@ -45,5 +45,9 @@ func _draw_tiles(table: Table) -> void:
 				var enemy = _enemy_resource.instantiate()
 				get_parent().add_child(enemy)
 				enemy.global_position = map_to_local(tile.get_position())
+			Tile.TileType.COIN:
+				var coin = _coin_resource.instantiate()
+				get_parent().add_child(coin)
+				coin.global_position = map_to_local(tile.get_position())
 			_:
 				pass

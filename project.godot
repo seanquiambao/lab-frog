@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="lab-frog"
-run/main_scene="uid://o7i2u4ewel0b"
+run/main_scene="uid://dvc5ojoredfha"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
