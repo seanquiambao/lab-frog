@@ -21,7 +21,7 @@ func _physics_process(delta: float) -> void:
 
 func _update_sprite() -> void:
 	if is_on_floor() and is_aggressive:
-		animated_sprite_2d.flip_h = target.position.x < position.x
+		animated_sprite_2d.flip_h = target.global_position.x < global_position.x
 
 	if(velocity.y < 0):
 		animated_sprite_2d.play("jump")
@@ -33,7 +33,7 @@ func _update_sprite() -> void:
 func _launch() -> void:
 	if not is_aggressive:
 		return
-	var difference_position = target.global_position - position 
+	var difference_position = target.global_position - global_position 
 	var direction = difference_position.normalized().clamp(Vector2(-1, -0.5), Vector2(1, -1))
 	velocity = direction * FORCE_CONSTANT
 	

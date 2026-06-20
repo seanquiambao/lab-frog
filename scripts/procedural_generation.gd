@@ -1,6 +1,8 @@
 extends TileMapLayer
-
 @onready var camera_2d: Camera2D = $Camera2D
+
+
+var _enemy_resource
 var tables: Array[Table] = []
 var theme: ThemeTileSet = ThemeTileSet.Lab
 
@@ -10,6 +12,7 @@ func get_tables() -> Array[Table]:
 	return tables
 
 func _ready() -> void:
+	_enemy_resource = preload("res://scenes/enemy_frog.tscn")
 	var table = Table.new()
 	tables.push_back(table)
 	_draw_tiles(tables.back())
@@ -36,4 +39,12 @@ func _destroy() -> void:
 
 func _draw_tiles(table: Table) -> void:
 	for tile in table.get_tiles():
-		set_cell(tile.get_position(), theme, tile.get_atlas_coordinate())
+		match(tile.get_tile_type()):
+			Tile.TileType.PLATFORM:
+				set_cell(tile.get_position(), theme, tile.get_atlas_coordinate())
+			Tile.TileType.ENEMY:
+				var enemy = _enemy_resource.instantiate()
+				get_parent().add_child(enemy)
+				enemy.global_position = map_to_local(tile.get_position())
+			_:
+				pass

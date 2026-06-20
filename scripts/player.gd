@@ -55,4 +55,3 @@ func _calculate_launch() -> void:
 	var direction = difference_position.normalized()
 	var jump_force = clamp(difference_position.length() * FORCE_CONSTANT, 0.0, MAXIMUM_FORCE)
 	velocity = direction * jump_force
-	

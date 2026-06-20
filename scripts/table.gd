@@ -12,14 +12,14 @@ const MAX_DISTANCE = 5
 const MIN_LENGTH = 10
 const MAX_LENGTH = 15
 
-func get_tiles() -> Array[Tile]:
-	return tiles
-
 func get_start() -> Vector2i:
 	return start
 
 func get_end() -> Vector2i:
 	return Vector2i(start.x + length, start.y)
+
+func get_tiles() -> Array[Tile]:
+	return tiles
 
 func _populate_tiles(spawn: bool = false) -> void:
 	var end = get_end();
@@ -43,7 +43,7 @@ func _populate_tiles(spawn: bool = false) -> void:
 			else:
 				continue
 			tile_texture = tile_textures[randi_range(0, tile_textures.size() - 1)]
-			var tile: Tile = Tile.new(Vector2i(i, j), tile_texture)
+			var tile: Tile = Tile.new(Vector2i(i, j), Tile.TileType.PLATFORM, tile_texture)
 			tiles.push_back(tile)
 
 	if spawn:
@@ -54,20 +54,25 @@ func _populate_tiles(spawn: bool = false) -> void:
 		var tile_texture: Vector2i
 		var tile_textures: Array
 		var chance = randi_range(0, 4)
-		if chance > 3:
+		var tile: Tile = null
+		if chance < 3:
 			i += 1
 			continue
+		if chance == 3:
+			tile = Tile.new(Vector2i(i, start.y - 1), Tile.TileType.ENEMY)
+			i += 1
+		else:
+			var remaining_size = (end.x + 1) - i
+			var max_size = min(remaining_size, 3)
+			var size = randi_range(1, max_size)
 		
-		var remaining_size = (end.x + 1) - i
-		var max_size = min(remaining_size, 3)
-		var size = randi_range(1, max_size)
+			tile_textures = LabTileSet.get_table_obstacles(size)
+			tile_texture = tile_textures[randi_range(0, tile_textures.size() - 1)]
 		
-		tile_textures = LabTileSet.get_table_obstacles(size)
-		tile_texture = tile_textures[randi_range(0, tile_textures.size() - 1)]
-		
-		var tile: Tile = Tile.new(Vector2i(i, start.y - 1), tile_texture)
+			tile = Tile.new(Vector2i(i, start.y - 1), Tile.TileType.PLATFORM, tile_texture)
+			i += (size + 1)
+			
 		tiles.push_back(tile)
-		i += (size + 1)
 
 func _clear_tiles() -> void:
 	for tile in tiles:

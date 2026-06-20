@@ -5,6 +5,9 @@ const OFFSET = 0;
 const WEIGHT = 0.3;
 var camera_speed = 100
 
+func _ready() -> void:
+	position = Vector2.ZERO
+
 func is_table_in_view(table: Table, orientation: String = "start") -> bool:
 	var table_point = table.get_start()
 	if orientation == "end":
