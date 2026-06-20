@@ -2,7 +2,7 @@ extends TileMapLayer
 @onready var camera_2d: Camera2D = $Camera2D
 
 
-var _enemy_resource
+var _enemy_resource = preload("res://scenes/enemy_frog.tscn")
 var tables: Array[Table] = []
 var theme: ThemeTileSet = ThemeTileSet.Lab
 
@@ -12,7 +12,6 @@ func get_tables() -> Array[Table]:
 	return tables
 
 func _ready() -> void:
-	_enemy_resource = preload("res://scenes/enemy_frog.tscn")
 	var table = Table.new()
 	tables.push_back(table)
 	_draw_tiles(tables.back())

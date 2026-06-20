@@ -6,6 +6,7 @@ var start: Vector2i = Vector2i(-2, 2)
 var length: int = MIN_LENGTH
 var tiles: Array[Tile] = []
 var texture: LabTileSet.TableTextures = LabTileSet.TableTextures.METAL
+var _has_enemy: bool = false
 
 const MIN_DISTANCE = 3
 const MAX_DISTANCE = 5
@@ -58,8 +59,9 @@ func _populate_tiles(spawn: bool = false) -> void:
 		if chance < 3:
 			i += 1
 			continue
-		if chance == 3:
+		if chance == 3 and not _has_enemy:
 			tile = Tile.new(Vector2i(i, start.y - 1), Tile.TileType.ENEMY)
+			_has_enemy = true
 			i += 1
 		else:
 			var remaining_size = (end.x + 1) - i
