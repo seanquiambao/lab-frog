@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://c4n1v43vmq22w" path="res://scripts/procedural_generation.gd" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://j573mx5tni2f" path="res://scenes/killzone.tscn" id="5_iywne"]
 [ext_resource type="Script" uid="uid://cbd0g23vp1ucp" path="res://scripts/game_manager.gd" id="6_p57ef"]
+[ext_resource type="PackedScene" uid="uid://cr23k3ybq7w2k" path="res://scenes/score_count.tscn" id="6_u5sy4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
 texture = ExtResource("3_lnu2h")
@@ -102,6 +103,7 @@ tile_set = SubResource("TileSet_lbhrr")
 script = ExtResource("4_lbhrr")
 
 [node name="Camera2D" type="Camera2D" parent="ProceduralGeneration" unique_id=2022116034]
+unique_name_in_owner = true
 zoom = Vector2(1.5, 1.5)
 script = ExtResource("4_iywne")
 
@@ -117,6 +119,11 @@ shape = SubResource("WorldBoundaryShape2D_p57ef")
 position = Vector2(-433, -2)
 rotation = 1.5707964
 shape = SubResource("WorldBoundaryShape2D_p57ef")
+
+[node name="ScoreCount" parent="." unique_id=625126764 instance=ExtResource("6_u5sy4")]
+unique_name_in_owner = true
+offset_top = -208.0
+offset_bottom = -208.0
 
 [node name="GameManager" type="Node2D" parent="." unique_id=2098457887]
 unique_name_in_owner = true

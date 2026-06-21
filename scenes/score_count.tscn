@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cr23k3ybq7w2k"]
+
+[ext_resource type="Script" uid="uid://c2tv3woha083x" path="res://scripts/score_count.gd" id="1_8q1tb"]
+[ext_resource type="FontFile" uid="uid://b4ciih8jtjba0" path="res://assets/fonts/hardpixel.otf" id="2_x5fb6"]
+
+[node name="ScoreCount" type="Control" unique_id=2028487313]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8q1tb")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1023643762]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer" unique_id=34670651]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("2_x5fb6")
+theme_override_font_sizes/normal_font_size = 64
+text = "0"
+horizontal_alignment = 1
