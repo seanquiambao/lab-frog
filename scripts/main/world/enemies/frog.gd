@@ -4,10 +4,14 @@ class_name EnemyFrog
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var timer: Timer = $Timer
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 const FORCE_CONSTANT = 450;
 var target: CharacterBody2D
 var is_aggressive: bool = false
+
+func _ready() -> void:
+	SignalBus.player_died.connect(_deactivate)
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -36,6 +40,7 @@ func _launch() -> void:
 	var difference_position = target.global_position - global_position 
 	var direction = difference_position.normalized().clamp(Vector2(-1, -0.5), Vector2(1, -1))
 	velocity = direction * FORCE_CONSTANT
+	audio_stream_player_2d.play()
 	
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player:
@@ -45,3 +50,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func _on_timer_timeout() -> void:
 	_launch()
+
+func _deactivate() -> void:
+	is_aggressive = false

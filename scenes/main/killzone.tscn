@@ -1,14 +1,19 @@
 [gd_scene format=3 uid="uid://j573mx5tni2f"]
 
 [ext_resource type="Script" uid="uid://cu0mxodgborjv" path="res://scripts/main/world/killzone.gd" id="1_g2kfa"]
+[ext_resource type="AudioStream" uid="uid://qn2lqvwricuv" path="res://assets/audio/sfx/fall.mp3" id="2_jj0di"]
 
 [node name="Killzone" type="Area2D" unique_id=1028965268]
 collision_mask = 3
 script = ExtResource("1_g2kfa")
 
 [node name="Timer" type="Timer" parent="." unique_id=802577662]
-wait_time = 0.6
+wait_time = 2.8
 one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=211254187]
+stream = ExtResource("2_jj0di")
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

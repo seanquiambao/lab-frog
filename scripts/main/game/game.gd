@@ -2,6 +2,7 @@ extends Node2D
 
 @export var spawn_point: Vector2i
 @export var game_over_screen: CanvasLayer
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 enum GameState {
 	START,
@@ -25,5 +26,6 @@ func _on_player_jumped() -> void:
 	set_game_state(GameState.PLAYING)
 
 func _on_player_died() -> void:
+	audio_stream_player_2d.play()
 	set_game_state(GameState.END)
 	game_over_screen.visible = true

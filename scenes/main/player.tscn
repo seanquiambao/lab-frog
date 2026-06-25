@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://7ehrjco8fkpe"]
 
-[ext_resource type="Texture2D" uid="uid://dvw6bh0gjpxa4" path="res://assets/sprites/player.png" id="1_3vyb7"]
+[ext_resource type="Texture2D" uid="uid://dondq4bnejbtc" path="res://assets/sprites/player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://qoxj5gue434h" path="res://scripts/main/world/player.gd" id="1_g2els"]
 [ext_resource type="PackedScene" uid="uid://c1wcankp0jatb" path="res://scenes/main/trajectory_line.tscn" id="3_qhqgy"]
+[ext_resource type="AudioStream" uid="uid://dm24adhnclndh" path="res://assets/audio/sfx/player_jump.mp3" id="4_wqvcu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
 atlas = ExtResource("1_3vyb7")
@@ -68,5 +69,9 @@ shape = SubResource("RectangleShape2D_qlg0r")
 [node name="TrajectoryLine" parent="." unique_id=93941046 instance=ExtResource("3_qhqgy")]
 width = 2.0
 script = null
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1870158110]
+stream = ExtResource("4_wqvcu")
+bus = &"SFX"
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

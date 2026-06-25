@@ -6,6 +6,7 @@ signal died
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var trajectory_line: Line2D = $TrajectoryLine
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 const FORCE_CONSTANT = 5;
 const MAXIMUM_FORCE = 750;
@@ -67,6 +68,7 @@ func _calculate_launch() -> Vector2:
 	return jump_force * direction
 
 func _jump(jump_force: Vector2) -> void:
+	audio_stream_player_2d.play()
 	jumped.emit()
 	if not is_on_floor():
 		return
