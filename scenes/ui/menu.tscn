@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://dhol4nhwev74i"]
 
 [ext_resource type="Script" uid="uid://bwykm4c430552" path="res://scripts/ui/main_menu.gd" id="1_w6y0u"]
-[ext_resource type="Texture2D" uid="uid://d4ax1yk3e88ot" path="res://assets/ui/title.png" id="2_cx0sj"]
-[ext_resource type="FontFile" uid="uid://b4ciih8jtjba0" path="res://assets/fonts/hardpixel.otf" id="3_ntye7"]
-[ext_resource type="Texture2D" uid="uid://dvw6bh0gjpxa4" path="res://assets/sprites/player.png" id="4_cghgw"]
+[ext_resource type="Texture2D" uid="uid://d11t5ou5vh41h" path="res://assets/ui/title.png" id="2_cx0sj"]
+[ext_resource type="FontFile" uid="uid://8gxkk2f5jqco" path="res://assets/fonts/hardpixel.otf" id="3_ntye7"]
+[ext_resource type="Texture2D" uid="uid://dondq4bnejbtc" path="res://assets/sprites/player.png" id="4_cghgw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mhnvy"]
 atlas = ExtResource("4_cghgw")
@@ -68,6 +68,11 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("3_ntye7")
 text = "SETTINGS"
 
+[node name="Quit" type="Button" parent="CanvasLayer/HBoxContainer/VBoxContainer/MenuOptions" unique_id=1747307629]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ntye7")
+text = "QUIT"
+
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HBoxContainer" unique_id=874517244]
 layout_mode = 2
 size_flags_horizontal = 6
@@ -79,3 +84,4 @@ sprite_frames = SubResource("SpriteFrames_g3eks")
 
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/VBoxContainer/MenuOptions/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/VBoxContainer/MenuOptions/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/VBoxContainer/MenuOptions/Quit" to="." method="_on_quit_pressed"]
