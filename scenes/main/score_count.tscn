@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cr23k3ybq7w2k"]
 
-[ext_resource type="Script" uid="uid://c2tv3woha083x" path="res://scripts/score_count.gd" id="1_8q1tb"]
+[ext_resource type="Script" uid="uid://c2tv3woha083x" path="res://scripts/main/game/score_count.gd" id="1_8q1tb"]
 [ext_resource type="FontFile" uid="uid://b4ciih8jtjba0" path="res://assets/fonts/hardpixel.otf" id="2_x5fb6"]
 
 [node name="ScoreCount" type="Control" unique_id=2028487313]

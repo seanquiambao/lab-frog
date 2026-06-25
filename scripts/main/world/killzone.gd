@@ -1,4 +1,5 @@
 extends Area2D
+
 @export var is_enemy_kill_zone = false
 @onready var timer: Timer = $Timer
 
@@ -13,4 +14,4 @@ func _on_body_entered(_body: Node2D) -> void:
 		_body.queue_free()
 
 func _on_timer_timeout() -> void:
-	get_tree().reload_current_scene()
+	SignalBus.player_died.emit()

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://c1wcankp0jatb"]
+
+[sub_resource type="GDScript" id="GDScript_55cd7"]
+script/source = "extends Line2D
+
+"
+
+[node name="TrajectoryLine" type="Line2D" unique_id=93941046]
+width = 1.0
+script = SubResource("GDScript_55cd7")

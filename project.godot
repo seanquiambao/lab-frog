@@ -11,9 +11,14 @@ config_version=5
 [application]
 
 config/name="lab-frog"
-run/main_scene="uid://dvc5ojoredfha"
+run/main_scene="uid://dhol4nhwev74i"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Globals="*uid://dplmpmij0bbe1"
+SignalBus="*uid://c4wbu2m1lygqc"
 
 [input]
 

@@ -6,6 +6,8 @@
 .import/
 export.cfg
 export_credentials.cfg
+*.tmp
+*.depren
 
 # Imported translations (automatically generated from CSV files)
 *.translation
@@ -15,5 +17,3 @@ export_credentials.cfg
 data_*/
 mono_crash.*.json
 
-# Temp Files
-scenes/*.tmp

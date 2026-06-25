@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bcj7wijbw8do5"]
 
-[ext_resource type="Script" uid="uid://b4b4ita4ahojp" path="res://scripts/enemy/frog.gd" id="1_7fdwa"]
+[ext_resource type="Script" uid="uid://b4b4ita4ahojp" path="res://scripts/main/world/enemies/frog.gd" id="1_7fdwa"]
 [ext_resource type="Texture2D" uid="uid://b7q6y0qwtw1js" path="res://assets/sprites/enemy_frog.png" id="1_ibfrg"]
-[ext_resource type="PackedScene" uid="uid://j573mx5tni2f" path="res://scenes/killzone.tscn" id="2_7fdwa"]
+[ext_resource type="PackedScene" uid="uid://j573mx5tni2f" path="res://scenes/main/killzone.tscn" id="2_7fdwa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t757d"]
 atlas = ExtResource("1_ibfrg")

@@ -1,17 +1,17 @@
 [gd_scene format=3 uid="uid://pop5sr8n3xbe"]
 
-[ext_resource type="Script" uid="uid://dmqq7cj4aiq6k" path="res://scripts/coin.gd" id="1_i64fm"]
-[ext_resource type="Texture2D" uid="uid://jh4f7sd3ljgv" path="res://assets/sprites/fly.png" id="1_rwqht"]
+[ext_resource type="Script" uid="uid://dmqq7cj4aiq6k" path="res://scripts/main/world/coin.gd" id="1_3qbsy"]
+[ext_resource type="Texture2D" uid="uid://jh4f7sd3ljgv" path="res://assets/sprites/fly.png" id="2_k50o3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i64fm"]
 size = Vector2(20, 18.552628)
 
 [node name="Coin" type="Area2D" unique_id=374784766]
 collision_mask = 2
-script = ExtResource("1_i64fm")
+script = ExtResource("1_3qbsy")
 
 [node name="Fly" type="Sprite2D" parent="." unique_id=1553663037]
-texture = ExtResource("1_rwqht")
+texture = ExtResource("2_k50o3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2041098839]
 position = Vector2(0, 1.1000026)

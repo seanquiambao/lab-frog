@@ -1,12 +1,16 @@
 [gd_scene format=3 uid="uid://dvc5ojoredfha"]
 
-[ext_resource type="Script" uid="uid://blrv6ogaonx0l" path="res://scripts/game.gd" id="1_p57ef"]
+[ext_resource type="Script" uid="uid://blrv6ogaonx0l" path="res://scripts/main/game/game.gd" id="1_p57ef"]
 [ext_resource type="Texture2D" uid="uid://bj07efmws7tpk" path="res://assets/sprites/tilesets/lab.png" id="3_lnu2h"]
-[ext_resource type="Script" uid="uid://dm52ey5hu5prt" path="res://scripts/camera_2d.gd" id="4_iywne"]
-[ext_resource type="Script" uid="uid://c4n1v43vmq22w" path="res://scripts/procedural_generation.gd" id="4_lbhrr"]
-[ext_resource type="PackedScene" uid="uid://j573mx5tni2f" path="res://scenes/killzone.tscn" id="5_iywne"]
-[ext_resource type="Script" uid="uid://cbd0g23vp1ucp" path="res://scripts/game_manager.gd" id="6_p57ef"]
-[ext_resource type="PackedScene" uid="uid://cr23k3ybq7w2k" path="res://scenes/score_count.tscn" id="6_u5sy4"]
+[ext_resource type="Script" uid="uid://dm52ey5hu5prt" path="res://scripts/main/world/camera_2d.gd" id="4_iywne"]
+[ext_resource type="Script" uid="uid://c4n1v43vmq22w" path="res://scripts/main/world/procedural_generation.gd" id="4_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://j573mx5tni2f" path="res://scenes/main/killzone.tscn" id="5_iywne"]
+[ext_resource type="Script" uid="uid://cbd0g23vp1ucp" path="res://scripts/main/game/game_manager.gd" id="6_p57ef"]
+[ext_resource type="PackedScene" uid="uid://cr23k3ybq7w2k" path="res://scenes/main/score_count.tscn" id="6_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://dqk2if4fkpiof" path="res://assets/ui/game_over.png" id="8_0tnpc"]
+[ext_resource type="Script" uid="uid://xb18ke4ucfof" path="res://scripts/ui/game_over.gd" id="8_vtaks"]
+[ext_resource type="FontFile" uid="uid://b4ciih8jtjba0" path="res://assets/fonts/hardpixel.otf" id="9_vtaks"]
+[ext_resource type="PackedScene" uid="uid://7ehrjco8fkpe" path="res://scenes/main/player.tscn" id="11_kvpfn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
 texture = ExtResource("3_lnu2h")
@@ -94,13 +98,15 @@ sources/0 = SubResource("TileSetAtlasSource_lnu2h")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_p57ef"]
 
-[node name="Game" type="Node2D" unique_id=1248308812]
+[node name="Game" type="Node2D" unique_id=1248308812 node_paths=PackedStringArray("game_over_screen")]
 script = ExtResource("1_p57ef")
+game_over_screen = NodePath("GameOver/CanvasLayer")
 
-[node name="ProceduralGeneration" type="TileMapLayer" parent="." unique_id=1211451337]
+[node name="ProceduralGeneration" type="TileMapLayer" parent="." unique_id=1211451337 node_paths=PackedStringArray("game")]
 unique_name_in_owner = true
 tile_set = SubResource("TileSet_lbhrr")
 script = ExtResource("4_lbhrr")
+game = NodePath("..")
 
 [node name="Camera2D" type="Camera2D" parent="ProceduralGeneration" unique_id=2022116034]
 unique_name_in_owner = true
@@ -128,3 +134,48 @@ offset_bottom = -208.0
 [node name="GameManager" type="Node2D" parent="." unique_id=2098457887]
 unique_name_in_owner = true
 script = ExtResource("6_p57ef")
+
+[node name="GameOver" type="Control" parent="." unique_id=1767866564]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_vtaks")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="GameOver" unique_id=1622471937]
+visible = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOver/CanvasLayer" unique_id=1389505270]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -70.0
+offset_right = 128.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="GameOver/CanvasLayer/VBoxContainer" unique_id=833937751]
+layout_mode = 2
+texture = ExtResource("8_0tnpc")
+
+[node name="Replay" type="Button" parent="GameOver/CanvasLayer/VBoxContainer" unique_id=373713230]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_vtaks")
+text = "REPLAY"
+
+[node name="Quit" type="Button" parent="GameOver/CanvasLayer/VBoxContainer" unique_id=2109362998]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_vtaks")
+text = "QUIT"
+
+[node name="Player" parent="." unique_id=1011728375 instance=ExtResource("11_kvpfn")]
+position = Vector2(112, 60)
+
+[connection signal="pressed" from="GameOver/CanvasLayer/VBoxContainer/Replay" to="GameOver" method="_on_replay_pressed"]
+[connection signal="pressed" from="GameOver/CanvasLayer/VBoxContainer/Quit" to="GameOver" method="_on_quit_pressed"]
+[connection signal="died" from="Player" to="." method="_on_player_died"]
+[connection signal="jumped" from="Player" to="." method="_on_player_jumped"]
