@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://u1vs675hm87w"]
 
 [ext_resource type="Script" uid="uid://di4hpnxaug6qt" path="res://scripts/ui/settings.gd" id="1_7pacj"]
-[ext_resource type="FontFile" uid="uid://b4ciih8jtjba0" path="res://assets/fonts/hardpixel.otf" id="2_h175o"]
+[ext_resource type="FontFile" uid="uid://8gxkk2f5jqco" path="res://assets/fonts/hardpixel.otf" id="2_h175o"]
+[ext_resource type="AudioStream" uid="uid://dequ10ahn6rq5" path="res://assets/audio/music/game_over.mp3" id="3_ptynm"]
+[ext_resource type="AudioStream" uid="uid://qn2lqvwricuv" path="res://assets/audio/sfx/fall.mp3" id="4_ncfhn"]
 
 [node name="Settings" type="Control" unique_id=505133019]
 layout_mode = 3
@@ -43,10 +45,12 @@ text = "Projectile Guide"
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="HSlider" type="HSlider" parent="CanvasLayer/VBoxContainer/Music" unique_id=392251986]
+[node name="Music" type="HSlider" parent="CanvasLayer/VBoxContainer/Music" unique_id=392251986]
 layout_mode = 2
 size_flags_horizontal = 3
-value = 100.0
+max_value = 1.0
+step = 0.1
+value = 1.0
 
 [node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/Music" unique_id=305858243]
 layout_mode = 2
@@ -58,10 +62,12 @@ text = "MUSIC"
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="HSlider" type="HSlider" parent="CanvasLayer/VBoxContainer/SFX" unique_id=1402183]
+[node name="SFX" type="HSlider" parent="CanvasLayer/VBoxContainer/SFX" unique_id=1402183]
 layout_mode = 2
 size_flags_horizontal = 3
-value = 100.0
+max_value = 1.0
+step = 0.1
+value = 1.0
 
 [node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/SFX" unique_id=826859379]
 layout_mode = 2
@@ -69,5 +75,15 @@ size_flags_horizontal = 10
 theme_override_fonts/font = ExtResource("2_h175o")
 text = "SFX"
 
+[node name="MusicAudio" type="AudioStreamPlayer" parent="." unique_id=313677927]
+stream = ExtResource("3_ptynm")
+bus = &"Music"
+
+[node name="SFXAudio" type="AudioStreamPlayer" parent="." unique_id=1287285980]
+stream = ExtResource("4_ncfhn")
+bus = &"SFX"
+
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Back" to="." method="_on_back_pressed"]
 [connection signal="toggled" from="CanvasLayer/VBoxContainer/ProjectileGuide" to="." method="_on_projectile_guide_toggled"]
+[connection signal="value_changed" from="CanvasLayer/VBoxContainer/Music/Music" to="." method="_on_music_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/VBoxContainer/SFX/SFX" to="." method="_on_sfx_value_changed"]
