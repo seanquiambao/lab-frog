@@ -1,5 +1,4 @@
 # Lab Frog 
-[![Itch.io](https://img.shields.io/badge/Itch.io-%23FF0B34.svg?style=for-the-badge&logo=Itch.io&logoColor=white)](https://seanquiambao.itch.io/lab-frog)
 [![GitHub](https://img.shields.io/badge/2022%20Version-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://www.github.com/seanquiambao/FrogGame) <br />
 
 A frog-hopping autoscroller I refactored, originally submitted to California Collegiate Game Jam 2022.
