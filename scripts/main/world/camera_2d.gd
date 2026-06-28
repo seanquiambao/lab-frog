@@ -7,9 +7,6 @@ const WEIGHT = 0.3;
 const MAX_CAMERA_SPEED = 125;
 var camera_speed = 75;
 
-func _ready() -> void:
-	position = Vector2.ZERO
-
 func is_table_in_view(table: Table, orientation: String = "start") -> bool:
 	var table_point = table.get_start()
 	if orientation == "end":

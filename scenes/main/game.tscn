@@ -5,8 +5,10 @@
 [ext_resource type="Script" uid="uid://dm52ey5hu5prt" path="res://scripts/main/world/camera_2d.gd" id="4_iywne"]
 [ext_resource type="Script" uid="uid://c4n1v43vmq22w" path="res://scripts/main/world/procedural_generation.gd" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://j573mx5tni2f" path="res://scenes/main/killzone.tscn" id="5_iywne"]
+[ext_resource type="Texture2D" uid="uid://bnayg6agdrisx" path="res://assets/sprites/background_01.png" id="6_5j5yt"]
 [ext_resource type="Script" uid="uid://cbd0g23vp1ucp" path="res://scripts/main/game/game_manager.gd" id="6_p57ef"]
 [ext_resource type="PackedScene" uid="uid://cr23k3ybq7w2k" path="res://scenes/main/score_count.tscn" id="6_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://dwp2og427bbgw" path="res://assets/sprites/background_02.png" id="7_kb4no"]
 [ext_resource type="Texture2D" uid="uid://ceblxg65u74ms" path="res://assets/ui/game_over.png" id="8_0tnpc"]
 [ext_resource type="Script" uid="uid://xb18ke4ucfof" path="res://scripts/ui/game_over.gd" id="8_vtaks"]
 [ext_resource type="FontFile" uid="uid://8gxkk2f5jqco" path="res://assets/fonts/hardpixel.otf" id="9_vtaks"]
@@ -111,21 +113,30 @@ game = NodePath("..")
 
 [node name="Camera2D" type="Camera2D" parent="ProceduralGeneration" unique_id=2022116034]
 unique_name_in_owner = true
-zoom = Vector2(1.5, 1.5)
 script = ExtResource("4_iywne")
 
 [node name="Killzone" parent="ProceduralGeneration/Camera2D" unique_id=1028965268 instance=ExtResource("5_iywne")]
+position = Vector2(0, -137)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ProceduralGeneration/Camera2D/Killzone" unique_id=2024435964]
 position = Vector2(2, 598)
 shape = SubResource("WorldBoundaryShape2D_p57ef")
 
 [node name="Killzone2" parent="ProceduralGeneration/Camera2D" unique_id=1304956969 instance=ExtResource("5_iywne")]
+position = Vector2(-294, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ProceduralGeneration/Camera2D/Killzone2" unique_id=1968669098]
 position = Vector2(-433, -2)
 rotation = 1.5707964
 shape = SubResource("WorldBoundaryShape2D_p57ef")
+
+[node name="Background" type="Sprite2D" parent="ProceduralGeneration/Camera2D" unique_id=1660443103]
+z_index = -2
+texture = ExtResource("6_5j5yt")
+
+[node name="Equipments" type="Sprite2D" parent="ProceduralGeneration/Camera2D" unique_id=1285377917]
+z_index = -2
+texture = ExtResource("7_kb4no")
 
 [node name="ScoreCount" parent="." unique_id=625126764 instance=ExtResource("6_u5sy4")]
 unique_name_in_owner = true

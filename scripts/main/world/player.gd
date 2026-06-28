@@ -68,10 +68,10 @@ func _calculate_launch() -> Vector2:
 	return jump_force * direction
 
 func _jump(jump_force: Vector2) -> void:
-	audio_stream_player_2d.play()
 	jumped.emit()
 	if not is_on_floor():
 		return
+	audio_stream_player_2d.play()
 	velocity = jump_force
 
 func _draw_projectile(delta: float) -> void:
