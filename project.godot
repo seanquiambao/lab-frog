@@ -13,7 +13,7 @@ config_version=5
 config/name="lab-frog"
 run/main_scene="uid://dhol4nhwev74i"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://ddhltdi4orpjh"
 
 [audio]
 
